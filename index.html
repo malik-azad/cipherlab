@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CipherLab — Web Security Utility Workbench</title>
+  <meta name="description" content="CipherLab is a fast, local-first web security utility workbench for bug bounty hunters, pentesters and developers. Decode, hash, inspect JWTs, parse URLs, format JSON and generate security-safe test data.">
+  <meta name="keywords" content="web security tools, bug bounty tools, pentesting tools, JWT decoder, URL parser, JSON formatter, hash generator, Base64 decoder, security workbench">
+  <meta name="author" content="CipherLab">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#101112">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none';">
+  <meta property="og:title" content="CipherLab — Web Security Utility Workbench">
+  <meta property="og:description" content="Local-first browser tools for web security testing, bug bounty research and development.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CipherLab">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="./">
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"CipherLab",
+    "applicationCategory":"DeveloperApplication",
+    "operatingSystem":"Web Browser",
+    "description":"Local-first web security utility workbench for authorized security testing and development.",
+    "browserRequirements":"Requires JavaScript"
+  }
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <a class="wordmark" href="#home" aria-label="CipherLab home">
+    <span class="mark" aria-hidden="true">CL</span>
+    <span><b>CipherLab</b><small>WEB SECURITY WORKBENCH</small></span>
+  </a>
+  <nav class="topnav" aria-label="Primary">
+    <button class="nav-link active" data-route="home">Workbench</button>
+    <button class="nav-link" data-route="transform">Transform</button>
+    <button class="nav-link" data-route="inspect">Inspect</button>
+    <button class="nav-link" data-route="helpers">Helpers</button>
+  </nav>
+  <div class="top-actions">
+    <span class="local-pill"><i></i>LOCAL</span>
+    <button class="key-button" id="commandButton" title="Open command palette">⌘ K</button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="route active" id="route-home">
+    <div class="intro">
+      <div>
+        <p class="eyebrow">FIELD UTILITY / 01</p>
+        <h1>Useful tools.<br><em>No theatre.</em></h1>
+        <p class="lede">A compact browser workbench for bug bounty research, web testing and development. The core tools run locally with native browser APIs.</p>
+      </div>
+      <div class="intro-note">
+        <span>DESIGN PRINCIPLE</span>
+        <b>Fast enough to keep open beside Burp.</b>
+      </div>
+    </div>
+
+    <div class="quick-strip">
+      <button data-route="transform"><span>01</span><b>Transform</b><small>encode / decode</small></button>
+      <button data-route="inspect"><span>02</span><b>Inspect</b><small>JWT / URL / JSON</small></button>
+      <button data-route="helpers"><span>03</span><b>Helpers</b><small>tokens / timestamps</small></button>
+    </div>
+
+    <div class="section-head"><div><span>WORKBENCH</span><h2>Common tasks</h2></div><p>Small utilities you can explain, audit and trust.</p></div>
+    <div class="tool-grid">
+      <button class="tool-card" data-tool="transform"><span class="tool-index">T01</span><strong>Transform Lab</strong><p>Base64, URL, HTML, Hex, Binary, ROT13 and Unicode.</p><i>↗</i></button>
+      <button class="tool-card" data-tool="hash"><span class="tool-index">T02</span><strong>Hash Lab</strong><p>SHA-1/256/384/512 using the browser Web Crypto API.</p><i>↗</i></button>
+      <button class="tool-card" data-tool="jwt"><span class="tool-index">T03</span><strong>JWT Inspector</strong><p>Decode claims and flag common missing or expired fields.</p><i>↗</i></button>
+      <button class="tool-card" data-tool="url"><span class="tool-index">T04</span><strong>URL Inspector</strong><p>Break a URL into host, path, query and parameters.</p><i>↗</i></button>
+      <button class="tool-card" data-tool="headers"><span class="tool-index">T05</span><strong>Header Checklist</strong><p>Paste response headers and check common defensive controls.</p><i>↗</i></button>
+      <button class="tool-card" data-tool="json"><span class="tool-index">T06</span><strong>JSON Lab</strong><p>Format, minify and validate API responses locally.</p><i>↗</i></button>
+    </div>
+
+    <div class="privacy-card">
+      <div><span class="privacy-icon">◎</span><div><b>Local-first by default</b><p>Core processing happens in this browser. No CDN, framework, analytics script, API key or application backend is required.</p></div></div>
+      <span class="mono">NO EXTERNAL REQUESTS</span>
+    </div>
+  </section>
+
+  <section class="route" id="route-transform">
+    <div class="page-head"><div><p class="eyebrow">UTILITY / T01</p><h1>Transform Lab</h1><p>Turn one representation into another. Keep the mechanics visible.</p></div><span class="route-code">TRANSFORM</span></div>
+    <div class="workbench-card">
+      <div class="control-row">
+        <label>Method<select id="transformType"><option value="base64">Base64</option><option value="url">URL component</option><option value="html">HTML entities</option><option value="hex">Hex</option><option value="binary">Binary</option><option value="rot13">ROT13</option><option value="unicode">Unicode escapes</option></select></label>
+        <button class="solid" id="transformEncode">Encode</button><button class="outline" id="transformDecode">Decode</button>
+        <button class="outline" id="transformDetect">Detect</button><span class="grow"></span><span class="hint" id="transformStatus">Ready</span>
+      </div>
+      <div class="dual">
+        <label class="editor"><span>INPUT <small id="transformCount">0 chars</small></span><textarea id="transformInput" spellcheck="false" placeholder="Paste text, a token, encoded value or test string..."></textarea></label>
+        <label class="editor"><span>OUTPUT <button class="tiny" id="copyTransform">COPY</button></span><textarea id="transformOutput" readonly spellcheck="false" placeholder="Output appears here..."></textarea></label>
+      </div>
+      <div class="bottom-row"><button class="outline" id="swapTransform">⇄ Swap</button><button class="outline" id="clearTransform">Clear</button><span class="grow"></span><span class="hint">All transformations are deterministic and local.</span></div>
+    </div>
+  </section>
+
+  <section class="route" id="route-inspect">
+    <div class="page-head"><div><p class="eyebrow">UTILITY / INSPECT</p><h1>Inspect</h1><p>Read common web-security artifacts without sending them anywhere.</p></div></div>
+    <div class="tabs">
+      <button class="tab active" data-inspect="jwt">JWT</button><button class="tab" data-inspect="hash">HASH</button><button class="tab" data-inspect="url">URL</button><button class="tab" data-inspect="json">JSON</button><button class="tab" data-inspect="headers">HEADERS</button>
+    </div>
+    <div class="inspect-panel active" id="inspect-jwt">
+      <div class="editor compact"><span>JWT INPUT</span><textarea id="jwtInput" spellcheck="false" placeholder="eyJhbGciOiJIUzI1NiIs..."></textarea></div>
+      <div class="bottom-row"><button class="solid" id="decodeJwt">Decode locally</button><button class="outline" id="clearJwt">Clear</button><span class="hint">Decoding is not signature verification.</span></div>
+      <div id="jwtMessage"></div>
+      <div class="inspect-grid"><article><span>HEADER</span><pre id="jwtHeader">—</pre></article><article><span>PAYLOAD</span><pre id="jwtPayload">—</pre></article></div>
+      <div class="finding-grid" id="jwtFindings"></div>
+    </div>
+
+    <div class="inspect-panel" id="inspect-hash">
+      <div class="editor compact"><span>TEXT TO HASH <small id="hashCount">0 chars</small></span><textarea id="hashInput" spellcheck="false" placeholder="Paste text here..."></textarea></div>
+      <div class="bottom-row"><button class="solid" id="generateHashes">Generate hashes</button><button class="outline" id="clearHash">Clear</button><span class="hint">SHA-1 is legacy; SHA-256+ is preferred for new security designs.</span></div>
+      <div class="finding-grid" id="hashFindings"></div>
+    </div>
+    <div class="inspect-panel" id="inspect-url">
+      <div class="editor compact"><span>URL</span><textarea id="urlInput" spellcheck="false" placeholder="https://example.com/search?q=test&page=2"></textarea></div>
+      <div class="bottom-row"><button class="solid" id="parseUrl">Parse URL</button><button class="outline" id="encodeUrl">Encode</button><button class="outline" id="decodeUrl">Decode</button></div>
+      <div class="finding-grid" id="urlFindings"></div>
+    </div>
+    <div class="inspect-panel" id="inspect-json">
+      <div class="dual"><label class="editor"><span>JSON INPUT</span><textarea id="jsonInput" spellcheck="false" placeholder='{"user":{"id":1,"role":"admin"}}'></textarea></label><label class="editor"><span>RESULT</span><textarea id="jsonOutput" readonly spellcheck="false"></textarea></label></div>
+      <div class="bottom-row"><button class="solid" id="formatJson">Format</button><button class="outline" id="minifyJson">Minify</button><button class="outline" id="validateJson">Validate</button></div>
+    </div>
+    <div class="inspect-panel" id="inspect-headers">
+      <div class="editor compact"><span>HTTP RESPONSE HEADERS</span><textarea id="headersInput" spellcheck="false" placeholder="Content-Security-Policy: default-src 'self'
+Strict-Transport-Security: max-age=31536000
+X-Content-Type-Options: nosniff
+..."></textarea></div>
+      <div class="bottom-row"><button class="solid" id="checkHeaders">Check headers</button><button class="outline" id="clearHeaders">Clear</button><span class="hint">Heuristic checklist — not a vulnerability scanner.</span></div>
+      <div class="finding-grid" id="headerFindings"></div>
+    </div>
+  </section>
+
+  <section class="route" id="route-helpers">
+    <div class="page-head"><div><p class="eyebrow">UTILITY / HELPERS</p><h1>Helpers</h1><p>Small pieces of kit that save time during labs, testing and development.</p></div></div>
+    <div class="helper-grid">
+      <article class="helper-card"><div><span>H01</span><h3>Random password</h3><p>Uses <code>crypto.getRandomValues()</code>; generated locally.</p></div><div class="inline-form"><input id="pwLength" type="number" min="8" max="128" value="24" aria-label="Password length"><button class="solid" id="generatePassword">Generate</button></div><textarea id="passwordOutput" readonly aria-label="Generated password"></textarea><button class="tiny" data-copy="passwordOutput">COPY</button></article>
+      <article class="helper-card"><div><span>H02</span><h3>Random token</h3><p>Raw random bytes represented as hex or Base64URL.</p></div><div class="inline-form"><input id="tokenBytes" type="number" min="8" max="128" value="32" aria-label="Token bytes"><select id="tokenFormat"><option value="hex">HEX</option><option value="base64url">BASE64URL</option></select><button class="solid" id="generateToken">Generate</button></div><textarea id="tokenOutput" readonly aria-label="Generated token"></textarea><button class="tiny" data-copy="tokenOutput">COPY</button></article>
+      <article class="helper-card"><div><span>H03</span><h3>UUID</h3><p>Generate a standards-compatible random UUID.</p></div><button class="solid wide" id="generateUuid">Generate UUID</button><textarea id="uuidOutput" readonly aria-label="Generated UUID"></textarea><button class="tiny" data-copy="uuidOutput">COPY</button></article>
+      <article class="helper-card"><div><span>H04</span><h3>Unix time</h3><p>Useful when reading JWT <code>iat</code>/<code>exp</code> or API data.</p></div><button class="solid wide" id="refreshTime">Refresh</button><textarea id="timeOutput" readonly aria-label="Current Unix time"></textarea><button class="tiny" data-copy="timeOutput">COPY</button></article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>CIPHERLAB / v2.0</span><span>CLIENT-SIDE UTILITY</span><span>FOR AUTHORIZED TESTING</span>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal" id="commandModal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="commandTitle">
+    <div class="modal-head"><div><span class="eyebrow">COMMAND</span><h2 id="commandTitle">Jump to a tool</h2></div><button class="icon-button" id="closeCommand" aria-label="Close">×</button></div>
+    <input id="commandSearch" class="command-input" autocomplete="off" placeholder="Type a tool name..." aria-label="Search tools">
+    <div id="commandList" class="command-list"></div>
+    <p class="modal-foot">Press <kbd>Esc</kbd> to close · <kbd>↑</kbd><kbd>↓</kbd> to move · <kbd>Enter</kbd> to open</p>
+  </div>
+</div>
+
+<script src="./js/app.js" defer></script>
+</body>
+</html>
