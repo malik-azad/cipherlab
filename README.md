@@ -23,6 +23,9 @@ CipherLab intentionally avoids the usual "neon hacker dashboard" aesthetic. The 
 - SEO metadata + WebApplication structured data
 - No framework, CDN, npm package, analytics, API or backend
 
+- <img width="1329" height="654" alt="Screenshot 2026-08-12 154123" src="https://github.com/user-attachments/assets/434d32e3-4cef-4165-a6a8-bf55eacf32ba" />
+
+
 ## Security model
 
 The application is designed to minimize attack surface:
